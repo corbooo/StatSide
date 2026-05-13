@@ -89,3 +89,9 @@ button:active {
   border-color: var(--color-accent);
   filter: none;
 }
+
+.backend-status {
+  margin: 1.5rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}

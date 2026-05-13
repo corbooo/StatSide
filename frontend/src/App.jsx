@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const [backendStatus, setBackendStatus] = useState("Checking backend...");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/health")
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendStatus(data.message);
+      })
+      .catch(() => {
+        setBackendStatus("Backend is not connected");
+      });
+  }, []);
+
   return (
     <main className="app">
       <section className="home-card">
@@ -20,6 +34,8 @@ function App() {
           <button>Compare Teams</button>
           <button className="outline-button">Compare Players</button>
         </div>
+
+        <p className="backend-status">{backendStatus}</p>
       </section>
     </main>
   );
