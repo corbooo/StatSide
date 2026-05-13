@@ -131,16 +131,44 @@ h2 {
 
 .filter-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.filter-box {
-  padding: 1rem;
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-field span {
   color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.filter-field select {
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--color-bg-dark);
+  color: var(--color-text);
   border: 1px solid var(--color-border);
-  border-radius: 14px;
+  border-radius: 12px;
+  font: inherit;
+}
+
+.filter-field select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.filter-field select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.results-message {
   text-align: center;
 }
 
