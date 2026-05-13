@@ -7,17 +7,17 @@ import ComparePlayers from "./pages/ComparePlayers";
 function App() {
   const [page, setPage] = useState("home");
 
-  if (page == "compareTeams") {
+  if (page === "compareTeams") {
     return <CompareTeams onBack={() => setPage("home")} />;
   }
 
-  if (page == "comparePlayers") {
+  if (page === "comparePlayers") {
     return <ComparePlayers onBack={() => setPage("home")} />;
   }
 
   return (
-    <Home 
-      onCompareTeams={() => setPage("compareTeams")} 
+    <Home
+      onCompareTeams={() => setPage("compareTeams")}
       onComparePlayers={() => setPage("comparePlayers")}
     />
   );

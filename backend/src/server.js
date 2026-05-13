@@ -18,24 +18,30 @@ app.get("/api/health", (req, res) => {
 });
 
 app.get("/api/countries", async (req, res) => {
-    try {
-        const response = await fetch(`${API_FOOTBALL_URL}/countries`, {
-            headers: {
-                "x-apisports-key": process.env.API_FOOTBALL_KEY,
-            },
-        });
+  if (!process.env.API_FOOTBALL_KEY) {
+    return res.status(500).json({
+      error: "API_FOOTBALL_KEY is missing from backend/.env",
+    });
+  }
 
-        const data = await response.json();
+  try {
+    const response = await fetch(`${API_FOOTBALL_URL}/countries`, {
+      headers: {
+        "x-apisports-key": process.env.API_FOOTBALL_KEY,
+      },
+    });
 
-        res.json(data);
-    } catch (error) {
-        console.error("API-Football error:", error.message);
+    const data = await response.json();
 
-        res.status(500).json({
-            error: "Failed to fetch coutnries from API-Football"
-        });
-    }
-})
+    res.json(data);
+  } catch (error) {
+    console.error("API-Football error:", error.message);
+
+    res.status(500).json({
+      error: "Failed to fetch countries from API-Football",
+    });
+  }
+});
 
 app.listen(PORT, () => {
     console.log(`StatSide backend running on port ${PORT}`);

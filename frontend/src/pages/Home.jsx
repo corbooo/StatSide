@@ -31,7 +31,9 @@ function Home({ onCompareTeams, onComparePlayers }) {
 
         <div className="button-row">
           <button onClick={onCompareTeams}>Compare Teams</button>
-          <button onClick={onComparePlayers} className="outline-button">Compare Players</button>
+          <button className="outline-button" onClick={onComparePlayers}>
+            Compare Players
+          </button>
         </div>
 
         <p className="backend-status">{backendStatus}</p>
