@@ -32,7 +32,7 @@ h1 {
   line-height: 1;
 }
 
-h1 span {
+span {
   color: var(--color-accent);
 }
 
@@ -94,4 +94,63 @@ button:active {
   margin: 1.5rem 0 0;
   color: var(--color-muted);
   font-size: 0.75rem;
+}
+
+.compare-card {
+  width: 100%;
+  max-width: 1500px;
+  min-height: 900px;
+  padding: 2.5rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+}
+
+.back-button {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.back-button:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  filter: none;
+}
+
+.compare-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-box {
+  padding: 1rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.results-box {
+  min-height: 500px;
+  padding: 2rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

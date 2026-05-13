@@ -1,43 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
+import Home from "./pages/Home";
+import CompareTeams from "./pages/CompareTeams";
+import ComparePlayers from "./pages/ComparePlayers";
 
 function App() {
-  const [backendStatus, setBackendStatus] = useState("Checking backend...");
+  const [page, setPage] = useState("home");
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/health")
-      .then((response) => response.json())
-      .then((data) => {
-        setBackendStatus(data.message);
-      })
-      .catch(() => {
-        setBackendStatus("Backend is not connected");
-      });
-  }, []);
+  if (page == "compareTeams") {
+    return <CompareTeams onBack={() => setPage("home")} />;
+  }
+
+  if (page == "comparePlayers") {
+    return <ComparePlayers onBack={() => setPage("home")} />;
+  }
 
   return (
-    <main className="app">
-      <section className="home-card">
-        <p className="eyebrow">Soccer Analytics</p>
-
-        <h1>
-          Stat<span>Side</span>
-        </h1>
-
-        <div className="accent-line"></div>
-
-        <p className="subtitle">
-          Compare soccer teams and players using real football data.
-        </p>
-
-        <div className="button-row">
-          <button>Compare Teams</button>
-          <button className="outline-button">Compare Players</button>
-        </div>
-
-        <p className="backend-status">{backendStatus}</p>
-      </section>
-    </main>
+    <Home 
+      onCompareTeams={() => setPage("compareTeams")} 
+      onComparePlayers={() => setPage("comparePlayers")}
+    />
   );
 }
 
