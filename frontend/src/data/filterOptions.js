@@ -7,4 +7,4 @@ export const leagues = [
   { id: 253, name: "MLS" },
 ];
 
-export const seasons = [2025, 2024, 2023, 2022];
+export const seasons = [2024, 2023, 2022];
