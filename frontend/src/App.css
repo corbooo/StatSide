@@ -183,3 +183,160 @@ h2 {
   align-items: center;
   justify-content: center;
 }
+
+.selector-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.selector-card {
+  min-height: 560px;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+}
+
+.selector-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.selector-card-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.selector-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.selection-box {
+  min-height: 390px;
+  padding: 1rem;
+  color: var(--color-muted);
+  background: var(--color-bg-dark);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.option-list {
+  display: grid;
+  gap: 0.65rem;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.option-list.compact {
+  max-height: 180px;
+}
+
+.option-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.option-button:hover,
+.option-button.active {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  filter: none;
+}
+
+.option-button img,
+.selected-item img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  border-radius: 999px;
+}
+
+.selected-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 120px;
+  padding: 1rem;
+  background: rgba(0, 255, 255, 0.06);
+  border: 1px solid var(--color-accent);
+  border-radius: 14px;
+}
+
+.selected-item strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+.selected-item p {
+  margin: 0.35rem 0 0;
+  color: var(--color-muted);
+}
+
+.small-button {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+.compare-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.compare-button {
+  min-width: 220px;
+}
+
+.selector-section {
+  margin-bottom: 1.25rem;
+}
+
+.selector-section-title {
+  margin: 0 0 0.75rem;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.error-message {
+  color: #ff8a8a;
+}
+
+@media (max-width: 900px) {
+  .selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selector-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-card {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+}

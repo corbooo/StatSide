@@ -1,13 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { leagues, seasons } from "../data/filterOptions";
+import { getTeams } from "../api/footballApi";
 
-function ComparePage({ onBack, title, subtitle, itemLabel }) {
+function ComparePage({ onBack, title, subtitle, itemLabel, mode }) {
   const [leagueId, setLeagueId] = useState("");
   const [season, setSeason] = useState("");
+
+  const [teams, setTeams] = useState([]);
+  const [teamA, setTeamA] = useState("");
+  const [teamB, setTeamB] = useState("");
+
+  const [isLoadingTeams, setIsLoadingTeams] = useState(false);
+  const [error, setError] = useState("");
 
   const selectedLeague = leagues.find(
     (league) => league.id === Number(leagueId)
   );
+
+  useEffect(() => {
+    async function loadTeams() {
+      if (mode !== "teams") {
+        return;
+      }
+
+      if (!leagueId || !season) {
+        return;
+      }
+
+      try {
+        setIsLoadingTeams(true);
+        setError("");
+
+        setTeams([]);
+        setTeamA("");
+        setTeamB("");
+
+        const data = await getTeams(leagueId, season);
+
+        setTeams(data.response || []);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load teams.");
+      } finally {
+        setIsLoadingTeams(false);
+      }
+    }
+
+    loadTeams();
+  }, [leagueId, season, mode]);
 
   return (
     <main className="app">
@@ -59,15 +99,47 @@ function ComparePage({ onBack, title, subtitle, itemLabel }) {
 
           <label className="filter-field">
             <span>{itemLabel} A</span>
-            <select disabled>
-              <option>Select league first</option>
+            <select
+              value={teamA}
+              onChange={(event) => setTeamA(event.target.value)}
+              disabled={!teams.length}
+            >
+              <option value="">
+                {isLoadingTeams
+                  ? "Loading teams..."
+                  : teams.length
+                  ? `Select ${itemLabel} A`
+                  : "Select league and season first"}
+              </option>
+
+              {teams.map((item) => (
+                <option key={item.team.id} value={item.team.id}>
+                  {item.team.name}
+                </option>
+              ))}
             </select>
           </label>
 
           <label className="filter-field">
             <span>{itemLabel} B</span>
-            <select disabled>
-              <option>Select league first</option>
+            <select
+              value={teamB}
+              onChange={(event) => setTeamB(event.target.value)}
+              disabled={!teams.length}
+            >
+              <option value="">
+                {isLoadingTeams
+                  ? "Loading teams..."
+                  : teams.length
+                  ? `Select ${itemLabel} B`
+                  : "Select league and season first"}
+              </option>
+
+              {teams.map((item) => (
+                <option key={item.team.id} value={item.team.id}>
+                  {item.team.name}
+                </option>
+              ))}
             </select>
           </label>
         </div>
