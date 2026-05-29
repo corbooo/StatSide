@@ -145,7 +145,9 @@ function ComparePage({ onBack, title, subtitle, itemLabel, mode }) {
         </div>
 
         <div className="results-box">
-          {selectedLeague && season ? (
+          {error ? (
+            <p className="error-message">{error}</p>
+          ) : selectedLeague && season ? (
             <div className="results-message">
               <p>
                 Ready to load {title.toLowerCase()} from {selectedLeague.name}{" "}

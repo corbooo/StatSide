@@ -26,3 +26,11 @@ export function getPlayers({ league, season, team }) {
     team,
   });
 }
+
+export function getTeamStatistics({ league, season, team }) {
+  return fetchFootballData("/team-statistics", {
+    league,
+    season,
+    team,
+  });
+}

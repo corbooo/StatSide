@@ -96,12 +96,17 @@ function PlayerSelector({ label, onSelect }) {
       id: activePlayer.player.id,
       name: activePlayer.player.name,
       photo: activePlayer.player.photo,
+      age: activePlayer.player.age,
+      nationality: activePlayer.player.nationality,
+      height: activePlayer.player.height,
+      weight: activePlayer.player.weight,
       teamId: activeTeam.team.id,
       teamName: activeTeam.team.name,
       teamLogo: activeTeam.team.logo,
       leagueId,
       leagueName: selectedLeague.name,
       season,
+      stats: activePlayer.statistics?.[0] || {},
     };
 
     setSelectedPlayer(playerChoice);

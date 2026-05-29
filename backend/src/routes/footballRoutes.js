@@ -28,6 +28,33 @@ router.get("/teams", async (req, res) => {
     }
 });
 
+
+router.get("/team-statistics", async (req, res) => {
+    try {
+        const { league, season, team } = req.query;
+
+        if (!league || !season || !team) {
+            return res.status(400).json({
+                error: "league, season, and team are required",
+            });
+        }
+
+        const data = await fetchFromApiFootball("/teams/statistics", {
+            league,
+            season,
+            team,
+        });
+
+        res.json(data);
+    } catch (error) {
+        console.error("Team statistics route error:", error.message);
+
+        res.status(500).json({
+            error: "Failed to fetch team statistics",
+        });
+    }
+});
+
 router.get("/players", async (req, res) => {
     try {
         const { league, season, team, page = 1 } = req.query;
